@@ -38,18 +38,21 @@ void loop() {
   }else if(potValue>potMax){
     potMax = potValue;
   }
-  //when you have your correct readings, 
-  
-  
-  
+  print(potMin,potMax);
+  //Color in this program is interpreted in HSV format, where there are three values: Hue, Saturation, and Value. The only value that should mean something to you is Hue. It ranges from 0 to 360
+  //Using this, split the potentiometer values so that each position of the potentiometer has a hue associated with it. (Hint: divide the difference of the max/min values subtracted the min of the potentiometer by 360)
 
+  //finally, connect the read-in of the potentiometer to the HSV_to_RGB_LED method below, using the Saturation and Value values that you would like. Don't forget to pass in the pins of the LEDs to the function. 
+  //This code will connect the hardware's input (Potentiometer) to a hardware output (LEDs)
+
+  HSV_to_RGB_LED();
 
 
 }
 
 
 
-  //Use this function to convert from HSV format to RGB
+  //Use this function to convert from HSV format to RGB and write to the LEDs
   
 void HSV_to_RGB_LED(float h, float s, float v, float i, int pin0, int pin1, int pin2) {
   float c = s * v;
@@ -77,6 +80,8 @@ void HSV_to_RGB_LED(float h, float s, float v, float i, int pin0, int pin1, int 
   /* analogWrite() writes a PWM signal to the MOSFET transisors, which control the color of the LEDs.
    * 
    */
+   
+  //this line writes the colors to their respective pins, pin0,pin1,pin2
    
   analogWrite(pin0, floor(i * (r + m))), analogWrite(pin1, floor(i * (g + m))), analogWrite(pin2, floor(i * (b + m)));
 }
