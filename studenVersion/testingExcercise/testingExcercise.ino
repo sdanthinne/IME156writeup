@@ -1,36 +1,12 @@
-//#include "math.h"
-//#include "arduino.h"
-
-/* PIN SETUP IS IN THIS SECTION (DON'T MODIFY ANYTHING HERE!) */
-
-int sensorPin0 = A0;    // select the input pin for the potentiometer
-int sensorPin1 = A1;    // select the input pin for the potentiometer
-int sensorPin2 = A2;    // select the input pin for the potentiometer
-int gainPin = A3;      // pin that reads from the potentiometer
-
-//RGB LED0
-int ledPin0a = 2;      // select the pin for the LED
-int ledPin0b = 3;      // select the pin for the LED
-int ledPin0c = 4;      // select the pin for the LED
-
-//RGB LED1
-int ledPin1a = 5;      // select the pin for the LED
-int ledPin1b = 6;      // select the pin for the LED
-int ledPin1c = 7;      // select the pin for the LED
-
-//RGB LED2
-int ledPin2a = 8;      // select the pin for the LED
-int ledPin2b = 9;      // select the pin for the LED
-int ledPin2c = 10;      // select the pin for the LED
-//all of the above is provided in a .h file
-
-//Objective: create a testing program to test your main LEDs, while using the potentiometer to change the color.
+//todo: add import of .h file
+e2  //Objective: create a testing program to test your main LEDs, while using the potentiometer to change the color.
 
 
 //Add any global variables that you might need 
-int potMax =0;
+int potMax = 0;
 int potMin = 10000;
 int potValue = 0;
+
 void setup() {
   // this code is run at startup, no need to change
 
@@ -69,26 +45,29 @@ void loop() {
   }else if(potValue>potMax){
     potMax = potValue;
   }
+  
   Serial.println(potMin);
   Serial.println(potMax);
+  
+  //delays 2 ms
   delay(2);
   
-  //found min to be 0, max to be 1023
+  
   
   //Color in this program is interpreted in HSV format, where there are three values: Hue, Saturation, and Value. The only value that should mean something to you is Hue. It ranges from 0 to 360
   //Using this, split the potentiometer values so that each position of the potentiometer has a hue associated with it. (Hint: divide the difference of the max/min values subtracted the min of the potentiometer by 360)
 
   //finally, connect the read-in of the potentiometer to the HSV_to_RGB_LED method below, using the Saturation and Value values that you would like. Don't forget to pass in the pins of the LEDs to the function. 
   //This code will connect the hardware's input (Potentiometer) to a hardware output (LEDs)
-
-
-  HSV_to_RGB_LED(potValue,1,1,255,ledPin0a,ledPin0b,ledPin0c);
-  HSV_to_RGB_LED(potValue/(1024/360),1,1,255,ledPin1a,ledPin1b,ledPin1c);
-  HSV_to_RGB_LED(potValue%360,1,1,255,ledPin2a,ledPin2b,ledPin2c);
+  
   //divide the potentiometer value input to fit within the 360 degree hsv wheel
   //two ways of doing this:
   //using the modulus operator to make the potentiometer value loop back
   //using the division operator and dividing the input to fit within the 360 degree range
+  //set the s,v and i parameters to 1,1 and 255, respectively.
+  
+  HSV_to_RGB_LED(); //parameter order is as follows: hue,saturation,value,i,pin0,pin1,pin2
+  
   
 
 
