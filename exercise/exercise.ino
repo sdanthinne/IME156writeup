@@ -24,13 +24,6 @@ int ledPin2b = 9;      // select the pin for the LED
 int ledPin2c = 10;      // select the pin for the LED
 //all of the above is provided in a .h file
 
-//Objective: create a testing program to test your main LEDs, while using the potentiometer to change the color.
-
-
-//Add any global variables that you might need 
-int potMax =0;
-int potMin = 10000;
-int potValue = 0;
 void setup() {
   // this code is run at startup, no need to change
 
@@ -64,6 +57,13 @@ void loop() {
   //this code below determines the highest and lowest values of the potentiometer. 
   //When the board is on and reading to the Serial Console that is present within the arduino IDE, 
   //use the Serial.print function to take note of the max and min readings of your potentiometer
+//Objective: create a testing program to test your main LEDs, while using the potentiometer to change the color.
+
+
+//Add any global variables that you might need 
+int potMax =0;
+int potMin = 10000;
+int potValue = 0;
   if(potValue<potMin){
     potMin = potValue;
   }else if(potValue>potMax){
